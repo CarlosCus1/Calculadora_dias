@@ -1,0 +1,606 @@
+/* styles.css */
+
+/* ===== VARIABLES Y ESTILOS BASE ===== */
+:root {
+  --primary-color: #4a6fa5;
+  --primary-hover: #3a5a8f;
+  --danger-color: #d44638;
+  --danger-hover: #b5382b;
+  --success-color: #28a745;
+  --success-hover: #218838;
+  --text-color: #333;
+  --text-light: #f8f9fa;
+  --bg-color: #f8f9fa;
+  --card-bg: #ffffff;
+  --border-color: #e0e0e0;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  --radius: 8px;
+  --transition: all 0.3s ease;
+}
+
+.dark-theme {
+  --primary-color: #5a7bb5;
+  --primary-hover: #4a6ba5;
+  --danger-color: #e05547;
+  --danger-hover: #d04537;
+  --success-color: #38b757;
+  --success-hover: #28a747;
+  --text-color: #e0e0e0;
+  --text-light: #f8f9fa;
+  --bg-color: #1a1a1a;
+  --card-bg: #2d2d2d;
+  --border-color: #444;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== NAVEGACIÓN DE PÁGINAS ===== */
+.page {
+  display: none;
+}
+.active {
+  display: block;
+}
+
+/* ===== ESTILOS GENERALES ===== */
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 10px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.app-header {
+  text-align: center;
+  padding: 10px 0;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--primary-color);
+  color: var(--text-light);
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+/* ===== BOTONES (Aumentado 20%) ===== */
+.btn {
+  padding: 7.2px 14.4px;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1rem;
+}
+
+.btn-icon {
+  background: var(--border-color);
+  padding: 7.2px;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: var(--text-light);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn-danger {
+  background: var(--danger-color);
+  color: var(--text-light);
+}
+
+.btn-danger:hover {
+  background: var(--danger-hover);
+}
+
+.btn-success {
+  background: var(--success-color);
+  color: var(--text-light);
+}
+
+.btn-success:hover {
+  background: var(--success-hover);
+}
+
+.btn-secondary {
+    background: #e0e0e0;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.btn-secondary:hover {
+    background: #d4d4d4;
+}
+
+.dark-theme .btn-secondary {
+    background: #555;
+    color: var(--text-light);
+    border-color: #666;
+}
+
+.btn-next, .btn-prev {
+  background: var(--primary-color);
+  color: var(--text-light);
+}
+
+.btn-next:hover, .btn-prev:hover {
+  background: var(--primary-hover);
+}
+
+/* ===== CALENDARIO ===== */
+.calendario-mensual {
+  margin-bottom: 15px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.calendario-container {
+  width: 100%;
+}
+
+.calendario-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.mes-titulo {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.calendario-dias-semana, .calendario-dias {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  text-align: center;
+}
+
+.calendario-dias-semana div {
+  background: var(--border-color);
+  padding: 5px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.calendario-dias .dia {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendario-dias .dia.vacio {
+  background: var(--border-color);
+  cursor: default;
+}
+
+.calendario-dias .dia.seleccionada {
+  background: var(--primary-color);
+  color: var(--text-light);
+}
+
+.calendario-dias .dia:hover:not(.vacio) {
+  background: var(--primary-hover);
+  color: var(--text-light);
+}
+
+.calendario-dias .dia.feriado {
+  color: var(--danger-color);
+  font-weight: bold;
+}
+
+/* ===== TABLAS ===== */
+.table-container {
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+.table-container.scrollable {
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+  border: 1px solid var(--border-color);
+  padding: 8px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.data-table th {
+  background: var(--primary-color);
+  color: var(--text-light);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.data-table .feriado {
+  color: var(--danger-color);
+  font-weight: bold;
+}
+
+.valido {
+  color: var(--success-color);
+  font-weight: bold;
+}
+
+.invalido {
+  color: var(--danger-color);
+  font-weight: bold;
+}
+
+/* ===== FORMULARIO ===== */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+label {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+input, textarea {
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.2);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+  white-space: pre-wrap;
+  overflow-y: auto;
+}
+
+.monto-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.monto-prefijo {
+  color: var(--text-color);
+}
+
+.monto-fecha {
+  width: 80px;
+  padding: 5px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+/* ===== TOAST Y LOADING ===== */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--success-color);
+  color: var(--text-light);
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transition: var(--transition);
+  z-index: 1000;
+}
+
+.toast.error {
+  background: var(--danger-color);
+}
+
+.toast.show {
+  opacity: 1;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--border-color);
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== MODAL DE CONFIRMACIÓN ===== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none; /* Oculto por defecto */
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.show {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.show .modal-content {
+    transform: scale(1);
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+/* ===== PRIMERA PÁGINA (50% MÁS COMPACTA) ===== */
+#page1 .card {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#page1 .calendario-header {
+  margin-bottom: 6px;
+}
+
+#page1 .mes-titulo {
+  font-size: 0.9rem;
+}
+
+#page1 .calendario-dias-semana div {
+  padding: 3px;
+  font-size: 0.65rem;
+}
+
+#page1 .calendario-dias .dia {
+  padding: 4px;
+  font-size: 0.7rem;
+  min-height: 24px;
+}
+
+#page1 .badge {
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  margin-bottom: 6px;
+}
+
+#page1 .data-table th,
+#page1 .data-table td {
+  padding: 4px 6px;
+  font-size: 0.75rem;
+}
+
+#page1 .action-buttons {
+  margin-top: 8px;
+  gap: 6px;
+}
+
+#page1 .btn {
+  padding: 6px 12px;
+  font-size: 0.96rem;
+}
+
+/* Ajustes para pantallas grandes: mostrar dos calendarios */
+@media (min-width: 769px) {
+  #page1 .calendario-mensual {
+      grid-template-columns: repeat(2, 1fr);
+  }
+  #page1 .calendario-container {
+      display: block;
+  }
+}
+
+/* Ajustes para pantallas móviles: mostrar solo un calendario */
+@media (max-width: 768px) {
+  #page1 .calendario-mensual {
+      grid-template-columns: 1fr;
+  }
+  #page1 #calendario-2 {
+      display: none;
+  }
+  #page1 .calendario-dias-semana div {
+      padding: 2px;
+      font-size: 0.6rem;
+  }
+  #page1 .calendario-dias .dia {
+      padding: 2px;
+      font-size: 0.65rem;
+      min-height: 20px;
+  }
+}
+
+/* ===== SEGUNDA PÁGINA (60% MÁS COMPACTA) ===== */
+#page2 .card {
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+#page2 h2 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+#page2 h3 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+#page2 .form-grid {
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+#page2 label {
+  font-size: 0.8rem;
+  margin-bottom: 2px;
+}
+
+#page2 input,
+#page2 textarea {
+  padding: 6px;
+  font-size: 0.8rem;
+}
+
+#page2 textarea {
+  min-height: 35px; /* Reducido al 50% de 70px */
+}
+
+#page2 .data-table th,
+#page2 .data-table td {
+  padding: 6px 8px;
+  font-size: 0.8rem;
+}
+
+#page2 .monto-fecha {
+  width: 65px;
+  padding: 3px;
+}
+
+#page2 .action-buttons {
+  margin-top: 12px;
+}
+
+/* Formato de fechas en pantallas pequeñas */
+@media (max-width: 480px) {
+  #page1 .mes-titulo {
+      font-size: 0.8rem;
+  }
+  
+  #page1 .btn {
+      padding: 4.8px 7.2px;
+      font-size: 0.9rem;
+  }
+  
+  #page2 h2 {
+      font-size: 1rem;
+  }
+  
+  #page2 .form-grid {
+      gap: 6px;
+  }
+  
+  #page2 .card {
+      padding: 8px;
+  }
+  
+  #page2 input,
+  #page2 textarea {
+      padding: 5px;
+      font-size: 0.75rem;
+  }
+  
+  #page2 .monto-fecha {
+      width: 55px;
+  }
+}

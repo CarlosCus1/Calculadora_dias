@@ -1,34 +1,160 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="author" content="Carlos Cusi">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculadora de Días</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Carlos Cusi">
+    <meta name="assistant" content="chatgpt,Qwen,deepseek">
+    <meta name="description" content="Calculadora de días y montos para letras anticipadas de campaña.">
+    <meta name="keywords" content="Calculadora de días, Dividir montos, Plantilla de letras">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/png" href= "images/logo_cip_col.png">
+    <title>Calculadora de Días y Montos</title>
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </head>
+    <body class="container">
+        <header class="app-header">
+            <h1><i class="fas fa-calculator"></i> Calculadora de Días y Montos</h1>
+        </header>
+        <main class="app-main">
+            <!-- Primera página -->
+            <section id="page1" class="page active">
+                <div class="card compact">
+                    <h2><i class="far fa-calendar-alt"></i> Seleccionar días válidos</h2>
+                    <p id="contador-fechas" class="badge">Fechas: 0</p>
+                    <div class="calendario-mensual compact">
+                        <!-- Primer calendario -->
+                        <div class="calendario-container" id="calendario-1">
+                            <div class="calendario-header">
+                                <button id="mes-anterior-1" class="btn-icon" title="Mes anterior" aria-label="Mes anterior"><i class="fas fa-chevron-left"></i></button>
+                                <span id="mes-actual-1" class="mes-titulo">Abril 2025</span>
+                                <button id="mes-siguiente-1" class="btn-icon" title="Mes siguiente" aria-label="Mes siguiente"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            <div class="calendario-dias-semana compact">
+                                <div>D</div><div>L</div><div>M</div><div>M</div><div>J</div><div>V</div><div>S</div>
+                            </div>
+                            <div class="calendario-dias compact" id="calendario-dias-1"></div>
+                        </div>
+                        <!-- Segundo calendario -->
+                        <div class="calendario-container" id="calendario-2">
+                            <div class="calendario-header">
+                                <button id="mes-anterior-2" class="btn-icon" title="Mes anterior" aria-label="Mes anterior"><i class="fas fa-chevron-left"></i></button>
+                                <span id="mes-actual-2" class="mes-titulo">Mayo 2025</span>
+                                <button id="mes-siguiente-2" class="btn-icon" title="Mes siguiente" aria-label="Mes siguiente"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            <div class="calendario-dias-semana compact">
+                                <div>D</div><div>L</div><div>M</div><div>M</div><div>J</div><div>V</div><div>S</div>
+                            </div>
+                            <div class="calendario-dias compact" id="calendario-dias-2"></div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="card compact">
+                    <div class="table-container compact">
+                        <table class="data-table compact">
+                            <thead>
+                                <tr><th>Número</th><th>Fecha</th><th>Días</th></tr>
+                            </thead>
+                            <tbody id="lista-fechas"></tbody>
+                        </table>
+                    </div>
+                </div>
+    
+                <div class="action-buttons compact">
+                    <button id="tema" class="btn btn-icon" title="Tema"><i class="fas fa-moon"></i></button>
+                    <button id="copiarFechas" class="btn btn-primary"><i class="far fa-copy"></i> Copiar</button>
+                    <button id="limpiarTodo" class="btn btn-danger" title="Limpiar todo" aria-label="Limpiar todo"><i class="fas fa-trash-alt"></i></button>
+                    <button id="siguientePagina" class="btn btn-next" title="Siguiente" aria-label="Siguiente"><i class="fas fa-arrow-right"></i></button>
+                </div>
+            </section>
+    
+            <!-- Segunda página -->
+            <section id="page2" class="page">
+                <div class="card">
+                    <h2><i class="fas fa-file-invoice-dollar"></i> Letras anticipadas de campaña</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="cliente"><i class="far fa-user"></i> Código Cliente (opcional):</label>
+                            <input type="text" id="cliente" placeholder="Ingresar código cliente">
+                        </div>
+                        <div class="form-group">
+                            <label for="descCliente"><i class="fas fa-info-circle"></i> Descripción Cliente:</label>
+                            <input type="text" id="descCliente" placeholder="Ingresar descripción">
+                        </div>
+                        <div class="form-group">
+                            <label for="linea"><i class="fas fa-tag"></i> Línea:</label>
+                            <input type="text" id="linea" placeholder="Vinifan / Viniball">
+                        </div>
+                        <div class="form-group">
+                            <label for="pedido"><i class="fas fa-barcode"></i> Código Pedido:</label>
+                            <input type="text" id="pedido" placeholder="Ingresar código pedido">
+                        </div>
+                        <div class="form-group">
+                            <label for="monto"><i class="fas fa-money-bill-wave"></i> Monto (S/):</label>
+                            <input type="number" id="monto" placeholder="Monto total en soles" step="0.01">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="fechas"><i class="far fa-calendar-check"></i> Fechas:</label>
+                            <textarea id="fechas" placeholder="Pegar fechas copiadas"></textarea>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="card">
+                    <h3><i class="fas fa-chart-pie"></i> Resumen Totales</h3>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Mes</th>
+                                    <th>Monto Mes</th>
+                                    <th>Porcentaje Mes</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resumen-tabla"></tbody>
+                        </table>
+                    </div>
+                </div>
+    
+                <div class="card">
+                    <h3><i class="fas fa-calendar-day"></i> Detalle Por Mes</h3>
+                    <div class="table-container scrollable">
+                        <table class="data-table" id="detalle-table">
+                            <thead id="detalle-thead"></thead>
+                            <tbody id="detalle-tabla"></tbody>
+                        </table>
+                    </div>
+                </div>
+    
+                <div class="action-buttons">
+                    <button id="tema2" class="btn btn-icon" title="Cambiar tema"><i class="fas fa-moon"></i></button>
+                    <button id="distribuir" class="btn btn-primary"><i class="fas fa-calculator"></i> Calcular</button>
+                    <button id="descargarExcel" class="btn btn-success"><i class="far fa-file-excel"></i> Descargar Excel</button>
+                    <button id="limpiar2" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Limpiar</button>
+                    <button id="atrasPagina" class="btn btn-prev"><i class="fas fa-arrow-left"></i> Atrás</button>
+                </div>
+            </section>
+        </main>
+    
+        <div id="toast" class="toast"></div>
+        <div id="loading" class="loading-overlay">
+            <div class="spinner"></div>
+        </div>
+    
+        <!-- Modal de Confirmación -->
+        <div id="confirm-modal" class="modal-overlay">
+            <div class="modal-content">
+                <p id="confirm-message"></p>
+                <div class="modal-buttons">
+                    <button id="confirm-cancel" class="btn btn-secondary">Cancelar</button>
+                    <button id="confirm-ok" class="btn btn-danger">Confirmar</button>
+                </div>
+            </div>
+        </div>
 
-<body>
-  <div class="container">
-    <h1>Calculadora de Días</h1>
-    <div class="fecha-input">
-      <input type="text" id="fecha1" placeholder="dd/mm/aa" oninput="formatearFechaInput(this)">
-      <input type="number" id="dias1" placeholder="N° día 1">
-      <input type="text" id="resultado1" readonly placeholder="Resultado">
-      <button onclick="agregarFila()">+</button>
-    </div>
-    <div id="fechasAdicionales"></div>
-    <div class="botones">
-      <button onclick="calcular()">Calcular</button>
-      <button onclick="descargarXLSX()">⬇️ Xlsx</button>
-      <button onclick="limpiar()">Limpiar</button>
-      <button class="toggle-mode" onclick="toggleDarkMode()">🌙</button>
-    </div>
-    <div id="resultado"></div>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
-  <script src="script.js"></script>
-</body>
-
-</html>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+        <script src="js/script.js" defer></script>
+    </body>
+    </html>
