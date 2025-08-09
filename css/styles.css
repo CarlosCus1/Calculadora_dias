@@ -1,0 +1,149 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transición para el body */
+}
+
+body.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .container {
+  background-color: #444;
+  border: 1px solid #555;
+}
+
+h1 {
+  text-align: center;
+}
+
+.fecha-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+input,
+button {
+  margin: 5px;
+  padding: 8px;
+  width: calc(25% - 10px);
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Transición para inputs y botones */
+}
+
+input:focus {
+  border-color: #007bff; /* Color de borde al enfocar */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra al enfocar */
+  outline: none; /* Eliminar el contorno predeterminado del navegador */
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+body.dark-mode button {
+  background-color: #0056b3;
+}
+
+body.dark-mode button:hover {
+  background-color: #003d80;
+}
+
+.resultado {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.feriado,
+.domingo {
+  color: red;
+}
+
+.sabado {
+  color: blue;
+}
+
+.botones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.botones button {
+  margin: 5px;
+  flex: 1;
+}
+
+.toggle-mode {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8em;
+  margin-left: 5px;
+}
+
+.resaltar-resultado {
+  animation: resaltar 1s ease-in-out;
+}
+
+@keyframes resaltar {
+  0% { background-color: transparent; }
+  50% { background-color: #ffff99; } /* Un amarillo suave */
+  100% { background-color: transparent; }
+}
+
+body.dark-mode .resaltar-resultado {
+  animation: resaltar-dark 1s ease-in-out;
+}
+
+.about-section {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8em;
+  color: #666;
+}
+
+body.dark-mode .about-section {
+  color: #aaa;
+}
+
+
+
+@keyframes resaltar-dark {
+  0% { background-color: transparent; }
+  50% { background-color: #666600; } /* Un amarillo oscuro para el modo oscuro */
+  100% { background-color: transparent; }
+}
+

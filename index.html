@@ -4,31 +4,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="author" content="Carlos Cusi">
+  <meta name="description" content="Calculadora de días interactiva con feriados dinámicos y modo oscuro. Asistencia y colaboración de Gemini.">
+  <meta name="generator" content="Gemini CLI Agent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora de Días</title>
-  <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/images/logo_cip.png" type="image/png">
 </head>
 
 <body>
   <div class="container">
     <h1>Calculadora de Días</h1>
     <div class="fecha-input">
-      <input type="text" id="fecha1" placeholder="dd/mm/aa" oninput="formatearFechaInput(this)">
-      <input type="number" id="dias1" placeholder="N° día 1">
+      <input type="text" id="fecha1" placeholder="Fecha (dd/mm/yyyy)" oninput="formatearFechaInput(this); dispararCalculo(1);" onfocus="this.select();">
+      <input type="number" id="dias1" placeholder="Número de días" oninput="dispararCalculo(1);">
       <input type="text" id="resultado1" readonly placeholder="Resultado">
-      <button onclick="agregarFila()">+</button>
+      <button onclick="agregarFila()" title="Añadir nueva fila de cálculo">+</button>
     </div>
     <div id="fechasAdicionales"></div>
     <div class="botones">
-      <button onclick="calcular()">Calcular</button>
-      <button onclick="descargarXLSX()">⬇️ Xlsx</button>
-      <button onclick="limpiar()">Limpiar</button>
-      <button class="toggle-mode" onclick="toggleDarkMode()">🌙</button>
+      <button onclick="descargarXLSX()" title="Descargar resultados en formato XLSX">⬇️ Xlsx</button>
+      <button onclick="limpiar()" title="Limpiar todos los campos y filas">Limpiar</button>
+      <button class="toggle-mode" onclick="toggleDarkMode()" title="Alternar modo claro/oscuro">🌙</button>
     </div>
     <div id="resultado"></div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
+  <div class="about-section">
+    <span class="version-info" title="Calculadora de Días v1.0&#10;&#10Desarrollado por Carlos Cusi&#10;Asistencia y colaboración de Gemini (Google)">cc_calculadora v1.0</span>
+  </div>
 </body>
 
 </html>
