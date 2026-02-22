@@ -136,33 +136,33 @@ function agregarFila() {
   
   nuevoInput.innerHTML = `
     <div class="card-body p-3">
-      <!-- Fila 1: Fecha + Días (en móvil) -->
-      <div class="row g-2 align-items-center mb-2 mb-sm-0">
-        <div class="col-6 col-sm-4 col-md-3">
+      <div class="d-flex flex-wrap flex-sm-nowrap align-items-center gap-2 gap-sm-3">
+        <!-- Fecha -->
+        <div class="flex-fill" style="min-width: 140px;">
           <div class="form-floating">
             <input type="text" class="form-control input-fecha" id="fecha${id}" placeholder="dd/mm/yyyy" oninput="formatearFechaInput(this); dispararCalculo(${id});" onfocus="this.select();">
             <label for="fecha${id}">Fecha</label>
           </div>
           <span class="text-danger small" id="errorFecha${id}" role="alert" aria-live="polite"></span>
         </div>
-        <div class="col-6 col-sm-3 col-md-2">
+        <!-- Días -->
+        <div class="flex-fill" style="min-width: 80px; max-width: 100px;">
           <div class="form-floating">
             <input type="number" class="form-control input-dias" id="dias${id}" placeholder="Días" oninput="dispararCalculo(${id});" onfocus="this.select();">
             <label for="dias${id}">Días</label>
           </div>
           <span class="text-danger small" id="errorDias${id}" role="alert" aria-live="polite"></span>
         </div>
-      </div>
-      <!-- Fila 2: Resultado + Botón eliminar -->
-      <div class="row g-2 align-items-center">
-        <div class="col-8 col-sm-5 col-md-5">
+        <!-- Resultado -->
+        <div class="flex-fill" style="min-width: 200px;">
           <div class="form-floating">
             <input type="text" class="form-control resultado" id="resultado${id}" placeholder="Resultado" readonly>
             <label for="resultado${id}">Resultado</label>
           </div>
         </div>
-        <div class="col-4 col-sm-3 col-md-2">
-          <button class="btn btn-danger btn-eliminar w-100" onclick="eliminarFila(this)" title="Eliminar fila" aria-label="Eliminar fila">
+        <!-- Botón eliminar -->
+        <div class="flex-shrink-0">
+          <button class="btn btn-danger btn-eliminar w-100 w-sm-auto" onclick="eliminarFila(this)" title="Eliminar fila" aria-label="Eliminar fila">
             <i class="bi bi-trash"></i>
           </button>
         </div>
