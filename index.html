@@ -98,38 +98,37 @@
       </div>
 
       <div id="filas-calculo">
-        <!-- Fila de cálculo inicial - Sistema de Tarjetas con 2 filas en móvil -->
+        <!-- Fila de cálculo inicial - Sistema de Tarjetas -->
         <div class="card card-calculo mb-3" data-row="1">
           <div class="card-body p-3">
-            <!-- Fila 1: Fecha + Días (en móvil) -->
-            <div class="row g-2 align-items-center mb-2 mb-sm-0">
-              <div class="col-6 col-sm-4 col-md-3">
+            <!-- Una sola fila para tablet+ con: Fecha + Días + Resultado + Botón -->
+            <div class="row g-2 align-items-center">
+              <div class="col-12 col-sm-6 col-md-2">
                 <div class="form-floating">
                   <input type="text" class="form-control input-fecha" id="fecha1" placeholder="dd/mm/yyyy" oninput="formatearFechaInput(this); dispararCalculo(1);" onfocus="this.select();">
                   <label for="fecha1">Fecha</label>
                 </div>
                 <span class="text-danger small" id="errorFecha1" role="alert" aria-live="polite"></span>
               </div>
-              <div class="col-6 col-sm-3 col-md-2">
+              <div class="col-6 col-sm-3 col-md-1">
                 <div class="form-floating">
                   <input type="number" class="form-control input-dias" id="dias1" placeholder="Días" oninput="dispararCalculo(1);" onfocus="this.select();">
                   <label for="dias1">Días</label>
                 </div>
                 <span class="text-danger small" id="errorDias1" role="alert" aria-live="polite"></span>
               </div>
-            </div>
-            <!-- Fila 2: Resultado + Botón (en móvil) -->
-            <div class="row g-2 align-items-center">
-              <div class="col-8 col-sm-5 col-md-5">
+              <div class="col-6 col-sm-3 col-md-5">
                 <div class="form-floating">
                   <input type="text" class="form-control resultado" id="resultado1" placeholder="Resultado" readonly>
                   <label for="resultado1">Resultado</label>
                 </div>
               </div>
-              <div class="col-4 col-sm-3 col-md-2">
-                <button class="btn btn-success btn-agregar w-100" onclick="agregarFila()" title="Añadir fila (Ctrl+N)" aria-label="Añadir fila">
-                  <i class="bi bi-plus-circle"></i>
-                </button>
+              <div class="col-12 col-sm-12 col-md-2">
+                <div class="d-flex gap-1">
+                  <button class="btn btn-success btn-agregar flex-grow-1" onclick="agregarFila()" title="Añadir fila (Ctrl+N)" aria-label="Añadir fila">
+                    <i class="bi bi-plus-circle"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

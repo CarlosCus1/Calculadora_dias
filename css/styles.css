@@ -436,22 +436,34 @@ footer {
         padding: 0.75rem 1rem;
     }
 
-    /* Filas de cálculo - distribución en 1 sola fila para tablets+ */
+    /* Una sola fila en tablets y PC */
     .card-calculo .row {
-        flex-wrap: nowrap;
+        flex-wrap: nowrap !important;
         align-items: center;
     }
 
-    /* Quitar margin-bottom de la primera fila en tablet+ */
-    .card-calculo .row.mb-2 {
+    /* Quitar margin-bottom para tener todo en una fila */
+    .card-calculo .row.mb-2,
+    .card-calculo .mb-2 {
         margin-bottom: 0 !important;
     }
 
-    /* Columnas en una línea */
-    .card-calculo .col-6,
-    .card-calculo .col-8,
-    .card-calculo .col-4 {
-        flex: none;
+    /* Ajustar anchos de columnas para una fila */
+    .card-calculo .col-12 {
+        flex: 0 0 auto;
+        width: auto;
+    }
+    
+    .card-calculo .col-sm-6 {
+        flex: 1 0 0%;
+    }
+    
+    .card-calculo .col-sm-3 {
+        flex: 0 0 auto;
+    }
+    
+    .card-calculo .col-sm-12 {
+        flex: 0 0 auto;
         width: auto;
     }
 
