@@ -65,26 +65,30 @@
 }
 
 /* ========================================
-   Resultados con colores semánticos
+   Resultados con colores semánticos y mejor contraste
    ======================================== */
 .resultado.feriado {
     background-color: var(--bs-danger-bg-subtle, #f8d7da) !important;
-    border-color: var(--bs-danger-border-subtle, #f5c2c7) !important;
+    border: 2px solid var(--bs-danger, #dc3545) !important;
     color: var(--bs-danger-text-emphasis, #842029) !important;
-    font-weight: bold;
+    font-weight: 700 !important;
+    font-size: 1.05rem;
 }
 
 .resultado.sabado {
     background-color: var(--bs-info-bg-subtle, #cff4fc) !important;
-    border-color: var(--bs-info-border-subtle, #9eeaf9) !important;
+    border: 2px solid var(--bs-info, #0dcaf0) !important;
     color: var(--bs-info-text-emphasis, #055160) !important;
-    font-weight: bold;
+    font-weight: 700 !important;
+    font-size: 1.05rem;
 }
 
 .resultado.normal {
     background-color: var(--bs-success-bg-subtle, #d1e7dd) !important;
-    border-color: var(--bs-success-border-subtle, #badbcc) !important;
+    border: 2px solid var(--bs-success, #198754) !important;
     color: var(--bs-success-text-emphasis, #0f5132) !important;
+    font-weight: 700 !important;
+    font-size: 1.05rem;
 }
 
 /* ========================================
@@ -212,6 +216,7 @@ header p {
 
 .card-header {
     padding: 10px 12px;
+    font-weight: 600;
 }
 
 /* Form floating más compacto */
@@ -236,7 +241,8 @@ header p {
 /* Botones de acciones rápidas */
 .btn-group .btn-sm {
     padding: 5px 10px;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
 /* Switch compacto */
