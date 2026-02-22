@@ -1,149 +1,686 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f5f5f5;
-  transition: background-color 0.3s ease, color 0.3s ease; /* Transición para el body */
+/* ========================================
+   Calculadora de Días v3.0 - Diseño Responsive Mejorado
+   Sistema de Tarjetas + Grid Híbrido
+   Enfoque: Mobile-First (90% móvil, 10% PC)
+   ======================================== */
+
+/* ========================================
+   Container Principal
+   ======================================== */
+@media (min-width: 576px) {
+    .container {
+        max-width: 720px;
+    }
 }
 
-body.dark-mode {
-  background-color: #333;
-  color: #fff;
+@media (min-width: 768px) {
+    .container {
+        max-width: 900px;
+    }
 }
 
-.container {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+@media (min-width: 992px) {
+    .container {
+        max-width: 1100px;
+    }
 }
 
-body.dark-mode .container {
-  background-color: #444;
-  border: 1px solid #555;
+/* ========================================
+   Sistema de Tarjetas para Filas de Cálculo
+   ======================================== */
+.card-calculo {
+    border-radius: 12px;
+    border: 1px solid var(--bs-border-color, #dee2e6);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-h1 {
-  text-align: center;
+.card-calculo:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.fecha-input {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+.card-calculo .card-body {
+    padding: 1rem;
 }
 
-input,
-button {
-  margin: 5px;
-  padding: 8px;
-  width: calc(25% - 10px);
-  box-sizing: border-box;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Transición para inputs y botones */
+/* Botones de acción en tarjetas */
+.btn-agregar,
+.btn-eliminar {
+    height: calc(2.5rem + 2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    border-radius: 8px;
 }
 
-input:focus {
-  border-color: #007bff; /* Color de borde al enfocar */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra al enfocar */
-  outline: none; /* Eliminar el contorno predeterminado del navegador */
+.btn-agregar {
+    background-color: var(--bs-success, #198754);
+    border-color: var(--bs-success, #198754);
 }
 
-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
+.btn-agregar:hover {
+    background-color: var(--bs-success-hover, #146c43);
+    border-color: var(--bs-success-hover, #146c43);
 }
 
-button:hover {
-  background-color: #0056b3;
+/* ========================================
+   Resultados con colores semánticos
+   ======================================== */
+.resultado.feriado {
+    background-color: var(--bs-danger-bg-subtle, #f8d7da) !important;
+    border-color: var(--bs-danger-border-subtle, #f5c2c7) !important;
+    color: var(--bs-danger-text-emphasis, #842029) !important;
+    font-weight: bold;
 }
 
-body.dark-mode button {
-  background-color: #0056b3;
+.resultado.sabado {
+    background-color: var(--bs-info-bg-subtle, #cff4fc) !important;
+    border-color: var(--bs-info-border-subtle, #9eeaf9) !important;
+    color: var(--bs-info-text-emphasis, #055160) !important;
+    font-weight: bold;
 }
 
-body.dark-mode button:hover {
-  background-color: #003d80;
+.resultado.normal {
+    background-color: var(--bs-success-bg-subtle, #d1e7dd) !important;
+    border-color: var(--bs-success-border-subtle, #badbcc) !important;
+    color: var(--bs-success-text-emphasis, #0f5132) !important;
+}
+
+/* ========================================
+   Inputs - Optimizados para táctiles
+   ======================================== */
+.input-fecha {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    min-height: 46px;
+}
+
+.input-dias {
+    text-align: center;
+    min-height: 46px;
 }
 
 .resultado {
-  margin-top: 20px;
-  font-weight: bold;
+    min-height: 46px;
+    font-weight: 500;
 }
 
-.feriado,
-.domingo {
-  color: red;
+/* Form floating mejor */
+.form-floating > .form-control {
+    height: calc(2.5rem + 2px);
+    border-radius: 8px;
 }
 
-.sabado {
-  color: blue;
+.form-floating > label {
+    padding: 0.6rem 0.75rem;
 }
 
-.botones {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
+/* ========================================
+   Leyenda de Colores
+   ======================================== */
+.leyenda {
+    font-size: 0.8rem;
 }
 
-.botones button {
-  margin: 5px;
-  flex: 1;
+.leyenda .color-box {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-right: 5px;
 }
 
-.toggle-mode {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5em;
+.leyenda .color-box.feriado {
+    background-color: var(--bs-danger, #dc3545);
 }
 
-.error-message {
-  color: red;
-  font-size: 0.8em;
-  margin-left: 5px;
+.leyenda .color-box.sabado {
+    background-color: var(--bs-info, #0dcaf0);
 }
 
-.resaltar-resultado {
-  animation: resaltar 1s ease-in-out;
+.leyenda .color-box.normal {
+    background-color: var(--bs-success, #198754);
 }
 
-@keyframes resaltar {
-  0% { background-color: transparent; }
-  50% { background-color: #ffff99; } /* Un amarillo suave */
-  100% { background-color: transparent; }
+/* ========================================
+   Historial
+   ======================================== */
+#historialLista .list-group-item {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-body.dark-mode .resaltar-resultado {
-  animation: resaltar-dark 1s ease-in-out;
+#historialLista .list-group-item:hover {
+    background-color: var(--bs-secondary-bg, #e9ecef);
 }
 
-.about-section {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.8em;
-  color: #666;
+/* ========================================
+   Footer
+   ======================================== */
+.version-info {
+    font-size: 0.75rem;
+    cursor: help;
+    opacity: 0.7;
 }
 
-body.dark-mode .about-section {
-  color: #aaa;
+/* ========================================
+   Botón flotante de historial
+   ======================================== */
+#btn-historial-flotante {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+/* ========================================
+   ========================================
+   DISEÑO MOBILE-FIRST (Base)
+   ========================================
+   ======================================== */
 
-
-@keyframes resaltar-dark {
-  0% { background-color: transparent; }
-  50% { background-color: #666600; } /* Un amarillo oscuro para el modo oscuro */
-  100% { background-color: transparent; }
+/* Container full-width en móvil */
+.container {
+    padding-left: 12px;
+    padding-right: 12px;
+    max-width: 100%;
 }
 
+/* Header compacto */
+header h1 {
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+header p {
+    font-size: 0.85rem;
+    margin-bottom: 0;
+}
+
+/* Cards más compactas */
+.card {
+    border-radius: 10px;
+}
+
+.card-body {
+    padding: 12px;
+}
+
+.card-header {
+    padding: 10px 12px;
+}
+
+/* Form floating más compacto */
+.form-floating > label {
+    font-size: 0.85rem;
+}
+
+.form-control {
+    font-size: 0.95rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+}
+
+.form-floating > .form-control {
+    height: calc(2.25rem + 2px);
+}
+
+.form-floating > label {
+    padding: 0.5rem 0.75rem;
+}
+
+/* Botones de acciones rápidas */
+.btn-group .btn-sm {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+}
+
+/* Switch compacto */
+.form-check-input {
+    width: 2.5rem;
+    height: 1.25rem;
+}
+
+.form-check-label {
+    font-size: 0.85rem;
+}
+
+/* Toolbar */
+.btn-toolbar {
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* Contenedor de acciones rápidas balanceado */
+.quick-actions-container .row {
+    margin: 0 -4px;
+}
+
+.quick-actions-container .col-6,
+.quick-actions-container .col-md-auto {
+    padding: 0 4px;
+}
+
+.quick-actions-container .btn-group {
+    display: flex;
+    justify-content: center;
+}
+
+.quick-actions-container .btn-group .btn {
+    flex: 1;
+    min-width: 50px;
+}
+
+/* Leyenda */
+.leyenda {
+    font-size: 0.7rem;
+    gap: 8px !important;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.leyenda .color-box {
+    width: 12px;
+    height: 12px;
+}
+
+/* Botones de acción principales - columna en móvil */
+.d-flex.justify-content-between {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+}
+
+.d-flex.gap-2 {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.d-flex.gap-2 .btn {
+    flex: 1;
+    min-width: 90px;
+    max-width: 150px;
+    font-size: 0.85rem;
+    padding: 8px 12px;
+}
+
+/* Toggle dark mode */
+#toggle-dark-mode {
+    align-self: center;
+}
+
+/* Footer */
+footer {
+    padding-top: 12px !important;
+    margin-top: 16px !important;
+    text-align: center;
+}
+
+.version-info {
+    font-size: 0.7rem;
+}
+
+/* Botón flotante */
+#btn-historial-flotante {
+    width: 50px;
+    height: 50px;
+    bottom: 15px;
+    right: 15px;
+}
+
+/* ========================================
+   ========================================
+   BREAKPOINT: 576px (Phones landscape, Small tablets)
+   ========================================
+   ======================================== */
+@media (min-width: 576px) {
+    .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    header p {
+        font-size: 0.9rem;
+    }
+
+    /* Botones de acción en fila */
+    .d-flex.justify-content-between {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .d-flex.gap-2 {
+        width: auto;
+        justify-content: flex-start;
+    }
+
+    .d-flex.gap-2 .btn {
+        flex: none;
+        min-width: 100px;
+    }
+
+    #toggle-dark-mode {
+        align-self: auto;
+    }
+
+    /* Leyenda en línea */
+    .leyenda {
+        font-size: 0.8rem;
+        justify-content: flex-start;
+    }
+
+    /* Acciones rápidas en fila para tablets+ */
+    .quick-actions-container .row {
+        flex-wrap: nowrap;
+    }
+
+    .quick-actions-container .col-6 {
+        flex: none;
+        width: auto;
+    }
+
+    /* Form floating */
+    .form-floating > .form-control {
+        height: calc(2.5rem + 2px);
+    }
+
+    /* Footer */
+    .version-info {
+        font-size: 0.75rem;
+    }
+
+    /* Botón flotante */
+    #btn-historial-flotante {
+        width: 56px;
+        height: 56px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* ========================================
+   ========================================
+   BREAKPOINT: 768px (Tablets)
+   ========================================
+   ======================================== */
+@media (min-width: 768px) {
+    .container {
+        max-width: 750px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    header h1 {
+        font-size: 1.75rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    /* Cards */
+    .card-body {
+        padding: 1rem 1.25rem;
+    }
+
+    .card-header {
+        padding: 0.75rem 1rem;
+    }
+
+    /* Filas de cálculo - distribución en 1 sola fila para tablets+ */
+    .card-calculo .row {
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+
+    /* Quitar margin-bottom de la primera fila en tablet+ */
+    .card-calculo .row.mb-2 {
+        margin-bottom: 0 !important;
+    }
+
+    /* Columnas en una línea */
+    .card-calculo .col-6,
+    .card-calculo .col-8,
+    .card-calculo .col-4 {
+        flex: none;
+        width: auto;
+    }
+
+    /* Inputs más cómodos */
+    .form-control {
+        font-size: 1rem;
+    }
+
+    /* Botones */
+    .btn-agregar,
+    .btn-eliminar {
+        min-width: 44px;
+    }
+
+    /* Leyenda */
+    .leyenda {
+        gap: 16px !important;
+    }
+
+    .leyenda .color-box {
+        width: 14px;
+        height: 14px;
+    }
+
+    /* Footer */
+    footer {
+        padding-top: 16px !important;
+        margin-top: 20px !important;
+    }
+}
+
+/* ========================================
+   ========================================
+   BREAKPOINT: 992px (Laptops, Desktops)
+   ========================================
+   ======================================== */
+@media (min-width: 992px) {
+    .container {
+        max-width: 1000px;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    /* Header centrado y con jerarquía */
+    header h1 {
+        font-size: 2rem;
+        justify-content: center;
+    }
+
+    header p {
+        font-size: 1.1rem;
+        text-align: center;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Cards con más espacio */
+    .card-calculo .card-body {
+        padding: 1.25rem 1.5rem;
+    }
+
+    /* Inputs con tamaño óptimo en PC */
+    .form-control {
+        font-size: 1rem;
+        padding: 0.6rem 0.9rem;
+    }
+
+    .form-floating > .form-control {
+        height: calc(2.75rem + 2px);
+    }
+
+    /* Botones */
+    .d-flex.gap-2 .btn {
+        min-width: 120px;
+    }
+
+    /* Leyenda y footer equilibrados */
+    .leyenda {
+        gap: 20px !important;
+        font-size: 0.85rem;
+    }
+
+    footer {
+        padding-top: 20px;
+        margin-top: 24px;
+    }
+
+    /* Resultado */
+    .resultado {
+        min-width: 180px;
+    }
+}
+
+/* ========================================
+   Animaciones
+   ======================================== */
+.card-calculo {
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out, box-shadow 0.3s ease;
+}
+
+/* ========================================
+   Focus visible para accesibilidad
+   ======================================== */
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb, 13, 110, 253), 0.25);
+}
+
+/* ========================================
+   Toast
+   ======================================== */
+.toast {
+    font-size: 0.9rem;
+}
+
+/* Toast position adjustment for mobile to avoid overlapping with floating button */
+@media (max-width: 575px) {
+    .toast-container {
+        bottom: 80px !important;
+        right: 10px !important;
+        left: 10px !important;
+    }
+    
+    .toast-container .toast {
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+}
+
+/* ========================================
+   Ajustes para inputs táctiles en móvil
+   ======================================== */
+@media (max-width: 575px) {
+    /* Inputs con mejor área táctil */
+    input[type="text"],
+    input[type="number"] {
+        min-height: 46px;
+        touch-action: manipulation;
+    }
+
+    /* Labels flotantes más visibles */
+    .form-floating > label {
+        font-size: 0.9rem;
+    }
+
+    /* Botones con buen tamaño táctil */
+    .btn {
+        min-height: 44px;
+        touch-action: manipulation;
+    }
+
+    /* Evitar zoom en inputs de número en iOS */
+    input[type="number"] {
+        font-size: 16px;
+    }
+
+    /* Cards de cálculo con 2 filas en móvil */
+    .card-calculo {
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+
+    /* Espaciado entre tarjetas */
+    #filas-calculo .card-calculo + .card-calculo {
+        margin-top: 8px;
+    }
+
+    /* Ajustar resultado en móvil para 2 filas */
+    .card-calculo .row:last-child {
+        margin-top: 0;
+    }
+
+    .card-calculo .resultado {
+        font-size: 0.85rem;
+    }
+
+    /* Botones más pequeños en móvil */
+    .btn-agregar,
+    .btn-eliminar {
+        padding: 6px 8px;
+        font-size: 1rem;
+    }
+}
+
+/* ========================================
+   Mejoras adicionales de UX
+   ======================================== */
+
+/* Indicador visual para filas vacías */
+.card-calculo:has(.resultado:empty) {
+    opacity: 0.85;
+}
+
+.card-calculo:has(.resultado:not(:empty)) {
+    border-color: var(--bs-primary, #0d6efd);
+}
+
+/* Transición suave del modo oscuro */
+body,
+.card-calculo,
+.form-control {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Badge del historial */
+#historialBadge {
+    font-size: 0.65rem;
+    min-width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Offcanvas */
+.offcanvas {
+    max-width: 85%;
+}
+
+@media (min-width: 576px) {
+    .offcanvas {
+        max-width: 350px;
+    }
+}
+
+/* Indicador visual para focus en móvil */
+.btn:focus,
+.form-control:focus {
+    outline: 2px solid var(--bs-primary, #0d6efd);
+    outline-offset: 2px;
+}

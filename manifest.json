@@ -1,0 +1,44 @@
+{
+  "name": "Calculadora de Días",
+  "short_name": "CalcDías",
+  "description": "Calculadora de días interactiva con feriados peruanos y modo oscuro",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f5f5",
+  "theme_color": "#007bff",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "es",
+  "categories": ["utilities", "productivity"],
+  "icons": [
+    {
+      "src": "assets/images/favicon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/favicon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Nueva Calculadora",
+      "short_name": "Nuevo",
+      "description": "Iniciar una nueva calculadora",
+      "url": "/?action=new",
+      "icons": [
+        {
+          "src": "assets/images/favicon.svg",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

@@ -1,78 +1,200 @@
-# Calculadora de Días
+# 📅 Calculadora de Días v2.0
 
-Este proyecto es una calculadora de días interactiva basada en la web que permite a los usuarios calcular la diferencia entre fechas o determinar una fecha futura añadiendo un número específico de días. Incluye funcionalidades para gestionar múltiples cálculos, resaltar días festivos y fines de semana, y exportar los resultados a un archivo XLSX.
+Una calculadora de días interactiva con feriados peruanos, modo oscuro y funcionalidad offline.
 
-## Características
+![Versión](https://img.shields.io/badge/versión-2.0-blue)
+![Licencia](https://img.shields.io/badge/licencia-MIT-green)
+![Estado](https://img.shields.io/badge/estado-activo-success)
 
-*   **Cálculo de Días Interactivo**: Los cálculos se realizan automáticamente a medida que el usuario ingresa datos en los campos de fecha o número de días, sin necesidad de un botón "Calcular" explícito.
-    *   Calcula el número de días entre una fecha ingresada y la fecha actual (mañana).
-    *   Calcula una fecha futura añadiendo un número específico de días a la fecha actual (mañana).
-*   **Gestión de Filas Dinámica**: Añade o elimina múltiples filas de entrada para realizar varios cálculos simultáneamente.
-*   **Exclusividad de Entrada**: Los campos de "Fecha" y "Número de días" son mutuamente excluyentes por fila. Al ingresar un valor en uno, el otro se deshabilita y se limpia, guiando al usuario sobre qué tipo de cálculo se realizará.
-*   **Resaltado de Días Especiales**: Resalta automáticamente los domingos y días festivos en rojo, y los sábados no feriados en azul, en los resultados.
-*   **Feriados Dinámicos**: Los días feriados fijos se reconocen para cualquier año, y los feriados movibles (como Jueves y Viernes Santo) se calculan dinámicamente para el año en curso.
-*   **Exportación a XLSX**: Descarga todos los cálculos y resultados en un archivo de hoja de cálculo XLSX.
-*   **Modo Oscuro**: Alterna entre un tema claro y oscuro para una mejor experiencia de usuario.
-*   **Formato de Fecha Automático (`dd/mm/yyyy`)**: Formatea automáticamente la entrada de fecha a `dd/mm/yyyy` mientras el usuario escribe.
-*   **Limpieza de Fecha Mejorada**: Al enfocar un campo de fecha, todo su contenido se selecciona, permitiendo una limpieza rápida y completa al presionar `Backspace` o cualquier tecla de escritura.
-*   **Mensajes de Error y Retroalimentación Visual**: Proporciona mensajes claros para entradas inválidas y resalta los resultados calculados.
-*   **Tooltips Informativos**: Los botones y campos deshabilitados ahora tienen tooltips para ofrecer información adicional al usuario.
-*   **Información de la Aplicación**: La versión de la aplicación (`cc_calculadora v1.0`) y la información de autoría/colaboración se muestran discretamente en la parte inferior derecha como un tooltip al pasar el ratón.
+## ✨ Características Principales
 
-## Tecnologías Utilizadas
+### Funcionalidades Core
+- 📊 **Cálculo de diferencias de fechas** - Ingresa una fecha y obtén los días transcurridos
+- ➕ **Suma de días** - Ingresa un número de días y obtén la fecha resultante
+- 🎉 **Feriados peruanos** - Identificación automática de feriados fijos y móviles
+- 🌙 **Modo oscuro** - Con detección automática de preferencias del sistema
 
-*   **HTML5**: Para la estructura de la página web.
-*   **CSS3**: Para el estilo y la presentación, incluyendo el modo oscuro.
-*   **JavaScript**: Para la lógica central de la calculadora, la manipulación del DOM y las interacciones del usuario.
-*   **SheetJS (xlsx.full.min.js)**: Una biblioteca de terceros utilizada para la funcionalidad de exportación de datos a XLSX.
+### Nuevas Características v2.0
+- 📱 **PWA (Progressive Web App)** - Instalable y funciona offline
+- 📜 **Historial de cálculos** - Guardado automático con localStorage
+- 📋 **Exportación múltiple** - XLSX, CSV y copia al portapapeles
+- ⌨️ **Atajos de teclado** - Navegación rápida y eficiente
+- 🔔 **Notificaciones toast** - Feedback visual de acciones
+- ♿ **Accesibilidad mejorada** - ARIA labels y navegación por teclado
 
-## Estructura del Proyecto
+## 🚀 Mejoras Implementadas
+
+### Optimizaciones de Rendimiento
+| Aspecto | Antes | Después |
+|---------|-------|---------|
+| CSS Variables | ❌ Valores hardcodeados | ✅ Sistema de variables CSS |
+| Responsive | ❌ Limitado | ✅ Mobile-first completo |
+| Accesibilidad | ❌ Básica | ✅ ARIA labels, focus visible |
+| Offline | ❌ No disponible | ✅ Service Worker |
+| Estado | ❌ Sin persistencia | ✅ LocalStorage |
+
+### Optimizaciones de Código
+- **CSS**: Sistema de variables CSS para fácil personalización
+- **JavaScript**: Estado centralizado con objeto `AppState`
+- **HTML**: Estructura semántica con roles ARIA
+
+## 🎨 Sistema de Diseño
+
+### Variables CSS Principales
+```css
+:root {
+  --color-primary: #007bff;
+  --color-success: #28a745;
+  --color-danger: #dc3545;
+  --color-info: #17a2b8;
+  --spacing-md: 16px;
+  --border-radius: 8px;
+  --transition-base: 0.3s ease;
+}
+```
+
+### Colores Semánticos
+- 🔴 **Feriado/Domingo** - Rojo (`#dc3545`)
+- 🔵 **Sábado** - Azul (`#17a2b8`)
+- ⚫ **Día hábil** - Color por defecto
+
+## ⌨️ Atajos de Teclado
+
+| Atajo | Acción |
+|-------|--------|
+| `Ctrl + D` | Alternar modo oscuro |
+| `Ctrl + L` | Limpiar todos los campos |
+| `Ctrl + H` | Abrir/cerrar historial |
+| `Ctrl + N` | Agregar nueva fila |
+| `Escape` | Cerrar panel de historial |
+
+## 📱 Instalación PWA
+
+### En Desktop (Chrome/Edge)
+1. Visita la aplicación
+2. Click en el icono de instalación en la barra de direcciones
+3. Confirma la instalación
+
+### En Móvil (Android)
+1. Visita la aplicación en Chrome
+2. Menú → "Añadir a pantalla de inicio"
+3. Confirma la instalación
+
+### En iOS
+1. Visita la aplicación en Safari
+2. Botón de compartir → "Añadir a pantalla de inicio"
+
+## 🏗️ Estructura del Proyecto
 
 ```
-.
-├── index.html
-├── README.md
+Calculadora_dias_v1_revisada/
+├── index.html          # Página principal
+├── manifest.json       # Configuración PWA
+├── sw.js              # Service Worker
+├── README.md          # Documentación
 ├── assets/
 │   └── images/
-│       └── logo_cip.png
+│       └── favicon.svg
 ├── css/
-│   └── styles.css
-├── js/
-│   └── script.js
-└── temp/
-    └── feriados_respaldo.json
-    └── holidays.json
+│   └── styles.css     # Estilos con variables CSS
+└── js/
+    └── script.js      # Lógica de la aplicación
 ```
 
-## Cómo Usar
+## 💡 Sugerencias Innovadoras para Futuras Versiones
 
-1.  **Clonar el Repositorio**:
-    ```bash
-    git clone https://github.com/tu-usuario/Calculadora-d-as.github.io.git
-    ```
-2.  **Abrir `index.html`**: Navega al directorio del proyecto y abre el archivo `index.html` en tu navegador web preferido.
+### 1. 🌐 Sincronización en la Nube
+- Integración con Google Drive o Dropbox
+- Sincronización de historial entre dispositivos
+- Backup automático de configuraciones
 
-### Interfaz de Usuario
+### 2. 📊 Dashboard de Estadísticas
+- Gráfico de días calculados por mes
+- Estadísticas de uso personal
+- Exportación de reportes PDF
 
-*   **Campos de Entrada**:
-    *   **Fecha (dd/mm/yyyy)**: Ingresa una fecha en formato día/mes/año (4 dígitos para el año).
-    *   **Número de días**: Ingresa un número de días.
-    *   **Resultado**: Muestra el resultado del cálculo.
-*   **Botones**:
-    *   **`+`**: Añade una nueva fila de entrada.
-    *   **`-`**: Elimina la fila de entrada adyacente.
-    *   **⬇️ Xlsx**: Descarga los resultados en un archivo XLSX.
-    *   **Limpiar**: Borra todas las entradas y filas adicionales.
-    *   **🌙 (Alternar Modo)**: Cambia entre el modo claro y oscuro.
+### 3. 🔔 Notificaciones Inteligentes
+- Recordatorios de fechas importantes
+- Alertas de feriados próximos
+- Notificaciones push configurables
 
-## Días Feriados
+### 4. 🎯 Calculadoras Especializadas
+- Calculadora de días laborables
+- Calculadora de vacaciones
+- Calculadora de plazos legales
 
-Los días feriados fijos están definidos en `js/script.js` y se replican anualmente. Los feriados movibles (como Jueves y Viernes Santo) se calculan dinámicamente para el año en curso.
+### 5. 🌍 Internacionalización
+- Soporte multiidioma (español, inglés, portugués)
+- Feriados por país configurable
+- Formatos de fecha regionales
 
-## Contribuciones
+### 6. 📱 Widgets
+- Widget de escritorio
+- Widget para móvil
+- Extensión de navegador
 
-Las contribuciones son bienvenidas. Por favor, abre un `issue` o envía un `pull request`.
+### 7. 🤖 Integraciones
+- API REST para desarrolladores
+- Webhooks para automatizaciones
+- Integración con calendarios (Google, Outlook)
 
-## Licencia
+### 8. 🎨 Personalización Avanzada
+- Temas personalizables
+- Modo de alto contraste mejorado
+- Tamaños de fuente configurables
 
-Este proyecto está bajo la licencia [MIT](LICENSE).
+### 9. 📈 Análisis de Productividad
+- Tiempo ahorrado calculado
+- Métricas de uso
+- Sugerencias de optimización
+
+### 10. 🔒 Seguridad y Privacidad
+- Encriptación de datos locales
+- Modo incógnito
+- Exportación/importación de datos
+
+## 🛠️ Tecnologías Utilizadas
+
+- **HTML5** - Estructura semántica
+- **CSS3** - Variables, Grid, Flexbox, Animations
+- **JavaScript ES6+** - Módulos, async/await, localStorage
+- **Service Workers** - Cache y offline
+- **Web App Manifest** - PWA
+- **XLSX.js** - Exportación Excel
+
+## 📋 Feriados de Perú Incluidos
+
+| Fecha | Feriado |
+|-------|---------|
+| 01/01 | Año Nuevo |
+| Jueves Santo | Variable (se calcula) |
+| Viernes Santo | Variable (se calcula) |
+| 01/05 | Día del Trabajo |
+| 29/06 | San Pedro y San Pablo |
+| 23/07 | Día de la Fuerza Aérea del Perú |
+| 28/07 | Fiestas Patrias |
+| 29/07 | Fiestas Patrias |
+| 06/08 | Batalla de Junín |
+| 30/08 | Santa Rosa de Lima |
+| 08/10 | Combate de Angamos |
+| 01/11 | Día de Todos los Santos |
+| 08/12 | Inmaculada Concepción |
+| 09/12 | Batalla de Ayacucho |
+| 25/12 | Navidad |
+
+## 🤝 Contribuciones
+
+Las contribuciones son bienvenidas. Por favor, abre un issue o pull request para sugerencias y mejoras.
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+
+## 👨‍💻 Autor
+
+**Carlos Cusi**
+- Asistencia y colaboración de Gemini (Google)
+
+---
+
+⭐ Si te gusta este proyecto, ¡dale una estrella!
