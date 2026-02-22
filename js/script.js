@@ -153,8 +153,8 @@ function agregarFila() {
           </div>
           <span class="text-danger small" id="errorDias${id}" role="alert" aria-live="polite"></span>
         </div>
-        <!-- Resultado: flex: 1 se estira -->
-        <div style="flex: 1; min-width: 200px;">
+        <!-- Resultado: flex: 1 se estira (max 45% en PC) -->
+        <div style="flex: 1; min-width: 200px; max-width: 45%;">
           <div class="form-floating">
             <input type="text" class="form-control resultado" id="resultado${id}" placeholder="Resultado" readonly>
             <label for="resultado${id}">Resultado</label>
